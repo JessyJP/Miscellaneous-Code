@@ -32,7 +32,7 @@ def initial_setup():
 sigma, rho, beta = 10, 28, 8/3
 r0 = [1, 1, 1]  # Initial conditions
 t_span = [0, 100]
-t_eval = np.linspace(t_span[0], t_span[1], 100)
+t_eval = np.linspace(t_span[0], t_span[1], 1000)
 
 sol = solve_ivp(lorenz_system, t_span, r0, args=(sigma, rho, beta), t_eval=t_eval)
 
@@ -51,9 +51,9 @@ with writer.saving(fig, videoFileName, 100):  # DPI can be adjusted for quality 
         point.set_3d_properties(sol.y[2, i])
         ax.set_title(f'Lorenz Attractor [t = {sol.t[i]:.2f}s]')
         
-        # Draw the current frame's content and ensure the figure is updated
-        fig.canvas.draw()
-        fig.canvas.flush_events()
+        # Update the figure on screen
+        plt.draw()
+        plt.pause(0.001)  # Pause briefly to display the frame
         
         # Grab the current frame and add it to the video
         writer.grab_frame()
