@@ -28,6 +28,18 @@ def initial_setup():
     ax.set_zlabel('z')
     return fig, ax, line, point
 
+def show_full_plot():
+    # Set up the figure and axis for animation
+    line, = ax.plot([], [], [], 'b-', lw=2)
+    point, = ax.plot([], [], [], '*r')
+    line.set_data([], [])
+    line.set_3d_properties([])
+    point.set_data([], [])
+    point.set_3d_properties([])
+    plt.show()
+    # TODO: finish this function for to display the full plot
+
+
 # Solve the Lorenz system
 sigma, rho, beta = 10, 28, 8/3
 r0 = [1, 1, 1]  # Initial conditions
